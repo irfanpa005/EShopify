@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="home-section">
+    
+    <section class="home-ls">
+            
+    </section>
+
+    <section class="home-rs">
+        <div class="reg-log-form">
+            <h2>Shop Manager</h2>
+            <form action="{% url 'shopmanager:manage-store' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                </div>
+                <input class="btn btn-primary form-control" type="submit" value="Login">
+            </form>
+            {% for message in messages %}
+                <div class="text-white"><small>{{ message }}</small></div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

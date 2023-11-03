@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div>
+    <h1 class="text-center">Manage Store</h1>
+</div>
+<br>
+
+<div class="row px-5">
+    <div class="col-12 col-md-12 col-lg-6 m1">
+        <h4 class="text-center">Add New Product</h4>
+        <form action="{% url 'shopmanager:add-product' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in p_form %}
+                <div class="form-group">
+                    {% if field.name == 'available' %}
+                        <label for="{{ field.id_for_label }}">Available</label>
+                    {% endif %}
+                    {% if field.name == 'image' %}
+                        <label for="{{ field.id_for_label }}">choose image</label>
+                    {% endif %}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Add Product</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-12 col-md-12 col-lg-6 m1">
+        <h4 class="text-center">Add New Category</h4>
+        <form action="{% url 'shopmanager:add-category' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in c_form %}
+                {% if field.name == 'image' %}
+                    <label for="{{ field.id_for_label }}">choose image</label>
+                {% endif %}
+                <div class="form-group">
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Add Category</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="my_bottom_margin col-9 col-md-3 col-lg-3 my-2">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top prod_image" src="{% if product.image %} {{product.image.url}} {% endif %}" alt="{{product.name}}"></a>
+            <div class="card-body">
+            <h4>{{product.name}}</h4>
+            <p>₹ {{product.price}}</p>
+            <a href="{% url 'shopmanager:edit-product' product_id=product.pk %}"><i class="fas fa-edit fa-lg"></i></a>
+            <a href="{% url 'shopmanager:remove-product' product_id=product.pk %}" ><i class="fa-regular fa-trash-can fa-xl" style="color: #d50101;"></i></a>
+        </div>
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+    <div class="mx_auto">
+        {% if products.paginator.num_pages > 1 %}
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+    </div>
+{% endblock %}

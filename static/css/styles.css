@@ -1,0 +1,100 @@
+*body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.body-content{
+    margin-top: 55px;
+}
+
+/* home page */
+.home-section { display: flex; margin: 0; padding: 0;}
+
+.home-ls, .home-rs {
+    flex: 0 0 50%;
+    width: 50%;
+    
+}
+
+.home-ls {
+    background-image: url('https://images.pexels.com/photos/5632382/pexels-photo-5632382.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+/* Registration form */
+.reg-log-form {
+    position: fixed;
+    top: 120px;
+    right: 150px;
+    width: 400px;
+    height: 450px;
+    background-color: #333;
+    color: #999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.reg-log-form > form{
+    width: 100%;
+    padding: 10px;
+}
+
+.reg-log-form > h5 > a{
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+
+.form-group {
+    margin: 10px 0;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #7a55c6;
+    color : white;
+}
+
+.nav-items {
+    margin-left: auto;
+}
+
+.navbar-brand, .nav-link{
+    color: white;
+}
+
+.nav-link{
+    color: white;
+}
+
+/* shop sectcion */
+.categ-image{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+
+.prod-card{
+    overflow: hidden;
+    
+}
+
+.prod_image {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.prod_det_image {
+    height: 350px;
+    width: fit-content;
+}

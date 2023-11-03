@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="home-section">
+    
+    <section class="home-ls">
+            
+    </section>
+
+    <section class="home-rs">
+        <div class="reg-log-form">
+            <h2>Register</h2>
+            <form action="{% url 'accounts:register' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" autofocus type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password" required>
+                </div>
+                <input class="btn btn-primary form-control" type="submit" value="Register">
+            </form>
+
+            {% comment %} <form action="{% url 'accounts:register' %}" method="POST">
+                {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                        {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Register</button>
+                    </div>
+            </form> {% endcomment %}
+            {% for message in messages %}
+                <div class="text-white"><small>{{ message }}</small></div>
+            {% endfor %}
+            <h5>Have Account? <br> <a href="{% url 'accounts:home' %}">Login Here</a></h5>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

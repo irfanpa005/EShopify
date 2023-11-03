@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div>
+    <h1 class="text-center">Manage Store</h1>
+</div>
+<br>
+<div class="container m1">
+    <h4 class="text-center">Update Product</h4>
+    <form action="{% url 'shopmanager:edit-product' product_id=product.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in p_form %}
+            <div class="form-group">
+                {% if field.name == 'available' %}
+                    <label for="{{ field.id_for_label }}">Available</label>
+                {% endif %}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <button class="btn btn-info" type="submit">Update Product</button>
+        </div>
+    </form>
+</div> 
+
+{% endblock %}

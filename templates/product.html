@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="mx_auto">
+    <p><a href="{% url 'shop:all_products' %}">Home</a> | <a href="{{product.category.get_url}}">{{product.category}}</a> | {{product.name}}</p>
+  </div>
+</div>
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 mx-auto">
+      <img src="{{product.image.url}}" alt="{{product.name}}" class="prod_det_image mx_auto">
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+        <h1>{{product.name}}</h1>
+        <p>₹{{product.price}}</p>
+        <p class="my_title">Product Description</p>
+        <p class="text-justify">{{product.description}}</p>
+        {% if product.stock <= 0 %}
+          <p class="text-justifyt"><b>Out of Stock</b></p>
+        {% else %}
+          <a href="{% url 'cart:add_cart' product.id %}" class="btn btn-secondary">Add to Cart</a>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
